@@ -2,6 +2,7 @@ package com.example.easyexceldemo.bo;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
@@ -17,15 +18,16 @@ import java.util.Date;
  */
 @Data
 @ToString
+@Builder
 public class InvoiceTemplateBO {
     @NotEmpty(message = "，发票代码未填写")
-    @ExcelProperty(value = "*发票代码")
+    @ExcelProperty(value = "*发票代码",format = "TEXT")
     private String invoiceCode;
     @NotEmpty(message = "，发票号码未填写")
     @ExcelProperty(value = "*发票号码")
     private String invoiceNo;
     @NotNull(message = "，开票日期未填写")
-    @ExcelProperty(value = "*开票日期\n" + "2000-00-00")
+    @ExcelProperty(value = "*开票日期\n" + "2000-00-00",format = "h:mm:ss AM/PM")
     @DateTimeFormat("yyyy-MM-dd")
     private Date invoiceDate;
     @NotEmpty(message = "，校验码未填写")
